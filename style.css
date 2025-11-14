@@ -21,6 +21,29 @@ main {
     box-sizing: border-box;
 }
 
+/* Grid container for tables */
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .tables-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .tables-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
 .main-header {
     font-size: 2.5em;
     margin: 0;
@@ -31,28 +54,64 @@ main {
 }
 
 .mod-table {
-    max-width: calc(100% - 40px);
-    width: calc(100% - 40px);
+    width: 100%;
     border-collapse: collapse;
-    margin: 20px 20px 0 20px;
+    margin: 0;
     box-sizing: border-box;
     table-layout: fixed;
+    display: block;
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid var(--theme-border);
+    border-radius: 8px;
+    background-color: #0d1117;
+}
+
+.mod-table thead,
+.mod-table tbody,
+.mod-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    box-sizing: border-box;
+}
+
+.mod-table thead {
+    width: 100%;
+    position: sticky;
+    top: 48px; /* Account for caption height */
+    z-index: 10;
+}
+
+.mod-table tbody {
+    width: 100%;
 }
 
 .mod-table caption {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
-    padding: 10px 0;
+    padding: 12px 15px;
     text-align: center;
     color: #f0f6fc;
+    display: block;
+    border-bottom: 1px solid var(--theme-border);
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    background-color: var(--theme-header-bg);
+    border-radius: 8px 8px 0 0;
 }
 
 .mod-table th, .mod-table td {
-    border: 1px solid #3d444d;
-    padding: 8px;
+    border: 1px solid var(--theme-border);
+    padding: 6px 10px;
     text-align: left;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    font-size: 0.9em;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .mod-table th:first-child,
@@ -67,4 +126,200 @@ main {
 
 .mod-table th {
     background-color: #151b23;
+}
+
+/* Table Theme System - Subtle Color Variations */
+.mod-table {
+    --theme-border: #3d444d;
+    --theme-header-bg: #151b23;
+    --theme-header-border: #3d444d;
+    --theme-row-hover: rgba(68, 147, 248, 0.05);
+    --theme-caption-accent: rgba(68, 147, 248, 0.1);
+}
+
+/* Theme: Libraries */
+.mod-table.theme-libraries {
+    --theme-border: #3d4a5d;
+    --theme-header-bg: #1a2330;
+    --theme-header-border: #3d4a5d;
+    --theme-row-hover: rgba(100, 150, 255, 0.05);
+    --theme-caption-accent: rgba(100, 150, 255, 0.1);
+}
+
+/* Theme: Game Tools */
+.mod-table.theme-game-tools {
+    --theme-border: #4d4a3d;
+    --theme-header-bg: #2a231a;
+    --theme-header-border: #4d4a3d;
+    --theme-row-hover: rgba(255, 200, 100, 0.05);
+    --theme-caption-accent: rgba(255, 200, 100, 0.1);
+}
+
+/* Theme: UI */
+.mod-table.theme-ui {
+    --theme-border: #3d4d4a;
+    --theme-header-bg: #1a2a28;
+    --theme-header-border: #3d4d4a;
+    --theme-row-hover: rgba(100, 255, 200, 0.05);
+    --theme-caption-accent: rgba(100, 255, 200, 0.1);
+}
+
+/* Theme: QOL */
+.mod-table.theme-qol {
+    --theme-border: #4d3d4a;
+    --theme-header-bg: #2a1a28;
+    --theme-header-border: #4d3d4a;
+    --theme-row-hover: rgba(255, 100, 200, 0.05);
+    --theme-caption-accent: rgba(255, 100, 200, 0.1);
+}
+
+/* Theme: Traits */
+.mod-table.theme-traits {
+    --theme-border: #5d4d3d;
+    --theme-header-bg: #302a1a;
+    --theme-header-border: #5d4d3d;
+    --theme-row-hover: rgba(255, 180, 120, 0.05);
+    --theme-caption-accent: rgba(255, 180, 120, 0.1);
+}
+
+/* Theme: Health */
+.mod-table.theme-health {
+    --theme-border: #5d3d3d;
+    --theme-header-bg: #301a1a;
+    --theme-header-border: #5d3d3d;
+    --theme-row-hover: rgba(255, 120, 120, 0.05);
+    --theme-caption-accent: rgba(255, 120, 120, 0.1);
+}
+
+/* Theme: Vehicles */
+.mod-table.theme-vehicles {
+    --theme-border: #3d5d4d;
+    --theme-header-bg: #1a3020;
+    --theme-header-border: #3d5d4d;
+    --theme-row-hover: rgba(120, 255, 180, 0.05);
+    --theme-caption-accent: rgba(120, 255, 180, 0.1);
+}
+
+/* Theme: Building */
+.mod-table.theme-building {
+    --theme-border: #4d5d3d;
+    --theme-header-bg: #28301a;
+    --theme-header-border: #4d5d3d;
+    --theme-row-hover: rgba(180, 255, 120, 0.05);
+    --theme-caption-accent: rgba(180, 255, 120, 0.1);
+}
+
+/* Theme: Environment */
+.mod-table.theme-environment {
+    --theme-border: #3d5d5d;
+    --theme-header-bg: #1a3030;
+    --theme-header-border: #3d5d5d;
+    --theme-row-hover: rgba(120, 255, 255, 0.05);
+    --theme-caption-accent: rgba(120, 255, 255, 0.1);
+}
+
+/* Theme: Tools */
+.mod-table.theme-tools {
+    --theme-border: #5d5d3d;
+    --theme-header-bg: #30301a;
+    --theme-header-border: #5d5d3d;
+    --theme-row-hover: rgba(255, 255, 120, 0.05);
+    --theme-caption-accent: rgba(255, 255, 120, 0.1);
+}
+
+/* Theme: Items */
+.mod-table.theme-items {
+    --theme-border: #5d3d5d;
+    --theme-header-bg: #301a30;
+    --theme-header-border: #5d3d5d;
+    --theme-row-hover: rgba(255, 120, 255, 0.05);
+    --theme-caption-accent: rgba(255, 120, 255, 0.1);
+}
+
+/* Theme: Sounds */
+.mod-table.theme-sounds {
+    --theme-border: #4d4d5d;
+    --theme-header-bg: #282830;
+    --theme-header-border: #4d4d5d;
+    --theme-row-hover: rgba(200, 180, 255, 0.05);
+    --theme-caption-accent: rgba(200, 180, 255, 0.1);
+}
+
+/* Theme: Clothing */
+.mod-table.theme-clothing {
+    --theme-border: #5d4d4d;
+    --theme-header-bg: #302828;
+    --theme-header-border: #5d4d4d;
+    --theme-row-hover: rgba(255, 200, 200, 0.05);
+    --theme-caption-accent: rgba(255, 200, 200, 0.1);
+}
+
+/* Theme: In-Game Map */
+.mod-table.theme-ingame-map {
+    --theme-border: #3d4d5d;
+    --theme-header-bg: #1a2830;
+    --theme-header-border: #3d4d5d;
+    --theme-row-hover: rgba(150, 200, 255, 0.05);
+    --theme-caption-accent: rgba(150, 200, 255, 0.1);
+}
+
+/* Theme: Cool */
+.mod-table.theme-cool {
+    --theme-border: #4d3d5d;
+    --theme-header-bg: #2a1a30;
+    --theme-header-border: #4d3d5d;
+    --theme-row-hover: rgba(220, 150, 255, 0.05);
+    --theme-caption-accent: rgba(220, 150, 255, 0.1);
+}
+
+/* Apply theme variables */
+.mod-table th,
+.mod-table td {
+    border-color: var(--theme-border);
+}
+
+.mod-table th {
+    background-color: var(--theme-header-bg);
+    border-color: var(--theme-header-border);
+}
+
+.mod-table caption {
+    background: linear-gradient(to bottom, var(--theme-caption-accent), var(--theme-header-bg));
+}
+
+.mod-table tbody tr:hover {
+    background-color: var(--theme-row-hover);
+}
+
+/* Table card wrapper */
+.table-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0; /* Prevents flex items from overflowing */
+    overflow: hidden;
+}
+
+/* Full-width table card (for cool table) */
+.table-card-fullwidth {
+    grid-column: 1 / -1;
+}
+
+/* Scrollbar styling for tables */
+.mod-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.mod-table::-webkit-scrollbar-track {
+    background: #151b23;
+    border-radius: 0 8px 8px 0;
+}
+
+.mod-table::-webkit-scrollbar-thumb {
+    background: var(--theme-border);
+    border-radius: 4px;
+}
+
+.mod-table::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-header-border);
 }
