@@ -13,7 +13,7 @@ a {
 
 main {
     max-width: 1920px;
-    margin: 20px;
+    margin: 20px auto;
     text-align: center;
     border: 1px solid #3d444d;
     border-radius: 10px;
